@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form class="form" id="<%=question._id%>">
+      <h1><%=question._id%></h1>
+      <h1><%=question.question%></h1>
+      <label for="question">Question : </label>
+      <textarea name="question" id="question"></textarea>
+      <label for="answers">Answers</label>
+      <input
+        type="text"
+        name="answers"
+        id="answers"
+        placeholder="separate each answer with;"
+      />
+      <label for="correct">Correct answer</label>
+      <input
+        type="text"
+        name="correct"
+        placeholder="put the correct answer here"
+        id="correct-answer"
+      />
+      <select name="category" id="">
+        <option value="">-----------------</option>
+        <option value="anglais">Anglais</option>
+        <option value="math">Mathématiques</option>
+        <option value="histoire">Histoire</option>
+      </select>
+      <input type="button" value="Update Question" />
+    </form>
+    <script>
+      document
+        .querySelector("input[type='button']")
+        .addEventListener("click", function () {
+          const formulaire = document.querySelector("form[class='form']");
+          const formdata = new FormData(formulaire);
+          const data = {
+            id: formulaire.id,
+            question: formdata.get("question"),
+            answers: formdata.get("answers"),
+            correct: formdata.get("correct"),
+            type: formdata.get("type"),
+          };
+          updateData(data);
+        });
+      const updateData = async (data) => {
+        const response = await fetch(`/api/question/update/` + data.id, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            question: data.question,
+            answers: data.answers,
+            correct: data.correct,
+            type: data.type,
+          }),
+        });
+        window.location.href = "/api/sall";
+      };
+    </script>
+  </body>
+</html>

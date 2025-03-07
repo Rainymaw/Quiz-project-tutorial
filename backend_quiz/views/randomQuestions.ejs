@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>5 random questions :</h1>
+    <div>
+      <%questions.forEach(element => { %>
+      <div>
+        <span><%=element.question%></span>
+        <span><%=element.answers%></span>
+        <span><%=element.type%></span>
+        <span><%=element.points%></span>
+      </div>
+      <% }); %>
+    </div>
+  </body>
+</html>

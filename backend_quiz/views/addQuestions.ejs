@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1 class="title">Ajouter une question</h1>
+    <form class="form" action="/api/question" method="post">
+      <label for="question">Question : </label>
+      <textarea name="question" id="question"></textarea>
+      <label for="answers">Answers</label>
+      <input
+        type="text"
+        name="answers"
+        id="answers"
+        placeholder="separate each answer with;"
+      />
+      <label for="correct">Correct answer</label>
+      <input
+        type="text"
+        name="correct"
+        placeholder="put the correct answer here"
+        id="correct-answer"
+      />
+      <select name="category" id="">
+        <option value="">-----------------</option>
+        <option value="anglais">Anglais</option>
+        <option value="math">Mathématiques</option>
+        <option value="histoire">Histoire</option>
+      </select>
+      <input type="submit" value="Create question" />
+    </form>
+  </body>
+</html>

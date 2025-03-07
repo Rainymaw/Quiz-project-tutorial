@@ -1,0 +1,10 @@
+Exercice ici :
+
+1-Vous allez créer une route qui s'appelle /all, et qui va retourner toutes les questions de votre
+base de donnée
+(indice, Question.find() pour récupérer tous les éléments d'une base de données)
+2-Vous allez créer une route qui s'appelle /question/random et qui va retourner 5 questions
+aléatoires de votre base de données (ça impliquue que vous allez créer d'abord 20 questions dans
+la base de données)
+3-Créer une page qui permet de modifier une question qui a déjà été crée (Question.findByIdAndUpdate())
+4-Ajouter un bouton supprimer pour chaque question (Question.findByIdAndDelete())

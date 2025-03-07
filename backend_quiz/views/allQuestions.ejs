@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Questions :</h1>
+    <div>
+      <% questions.forEach(element => { %>
+      <div>
+        <span> <%=element.question%> </span>
+        <span><%=element.answers%></span>
+        <span><%=element.correct%></span>
+        <span><%=element.type%></span>
+        <span><%=element.date_creation%></span>
+        <span><%=element.points%></span>
+        <span><a href="question/update/<%=element._id%>">Edit</a></span>
+        <span>
+          <input type="button" id="<%=element._id%>" value="Delete" />
+        </span>
+      </div>
+      <% }); %>
+    </div>
+    <script>
+      document
+        .querySelector("body")
+        .addEventListener("click", function (event) {
+          if (event.target.type != "button") {
+            return 0;
+          } else {
+            fetch("/api/question/delete/" + event.target.id, {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }).then((response) => {
+              window.location.href = "/api/all";
+            });
+          }
+        });
+    </script>
+  </body>
+</html>
