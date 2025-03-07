@@ -1,36 +1,25 @@
-import { useState, useEffect } from "react";
+import Inscription from "./Pages/Inscription";
+import Quiz from "./Pages/Quiz";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { AppBar, Typography } from "@mui/material";
 
 function App() {
-  const [questions, setQuestions] = useState();
-  const [load, setLoad] = useState(false);
-  useEffect(() => {
-    setLoad(true);
-    fetch("http://localhost:5000/api/front/questions/all", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-        setQuestions(data.questions);
-      });
-  }, [load]);
-
   return (
     <>
-      {questions &&
-        questions.map((question, index) => (
-          <div key={index}>
-            <span>{question.question}</span>
-            <span>{question.answers}</span>
-            <span>{question.correct}</span>
-            <span>{question.type}</span>
-          </div>
-        ))}
+      <BrowserRouter>
+        <AppBar>
+          <Typography color="white">
+            <Link to="/inscription">Inscription</Link>
+          </Typography>
+          <Typography color="white">
+            <Link to="/quiz">Quiz</Link>
+          </Typography>
+        </AppBar>
+        <Routes>
+          <Route path="/inscription" element={<Inscription />} />
+          <Route path="/quiz" element={<Quiz />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
