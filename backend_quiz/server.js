@@ -5,16 +5,17 @@ const { connection } = require("./models/database");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config(); //Récupére les variables du fichier .env
-
+const cookieParse = require("cookie-parser");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 connection().then(() => {
   console.log("Connected to mongodb database");
 });
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(cookieParse());
 app.set("view engine", "ejs");
 
 app.use("/api", quizRoutes);

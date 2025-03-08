@@ -1,0 +1,11 @@
+etape 1 :
+
+git remote add upstream https://github.com/Rainymaw/Quiz-project-tutorial
+
+etape 2 :
+
+git fetch upstream
+
+git checkout main
+
+git rebase upstream/main

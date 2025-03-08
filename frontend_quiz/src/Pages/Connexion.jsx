@@ -14,13 +14,14 @@ function Connexion() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
+      credentials: "include",
     });
-    if (response) {
-      console.log(response);
-    }
+    const resData = await response.json();
+    localStorage.setItem("token", resData["token"]);
+    console.log(resData);
   };
   return (
-    <Grid2 type="form" ref={formRef}>
+    <Grid2 component="form" ref={formRef}>
       <h1>Formulaire d'inscription</h1>
       <TextField name="email" label="email" type="email" />
       <TextField name="password" label="password" type="password" />

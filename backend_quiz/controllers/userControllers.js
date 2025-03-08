@@ -25,14 +25,19 @@ const connecterUtilisateur = async (req, res) => {
     res.json("Erreur, email introuvable");
   }
   const utilisateur = await User.findOne({ email: email });
+  if (!utilisateur) {
+    res.json("Erreur, l'utilisateur n'existe pas");
+  }
   const match = await bcrypt.compare(password, utilisateur.password);
   if (!match) {
-    res.json("Erreur");
+    res.json("Erreur mot de passe incorrect");
   }
   const token = genererToken({
     firstname: utilisateur.firstname,
     password: utilisateur.password,
   });
+  res.cookie("token", token, { samSite: "none" });
+  
   res.json({ token: token });
 };
 

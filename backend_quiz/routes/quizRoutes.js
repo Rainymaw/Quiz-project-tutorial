@@ -12,6 +12,8 @@ const {
   deleteQuestion,
   getAllQuestions,
 } = require("../controllers/quizControllers");
+
+const { authorization } = require("../middleware/authentication");
 const router = require("express").Router();
 
 router.route("/question").get(getAddQuestionPage).post(addQuestion);
@@ -20,6 +22,7 @@ router.route("/random-5").get(getRandomQuestions);
 router.route("/question/update/:id").get(getUpdatePage).put(updateQuestion);
 router.route("/question/delete/:id").delete(deleteQuestion);
 
-router.route("/front/questions/all").get(getAllQuestions);
+//Notre objectif est de sécuriser l'accés à cette route
+router.route("/front/questions/all").get(authorization, getAllQuestions);
 
 module.exports = router;

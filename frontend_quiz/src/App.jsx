@@ -2,6 +2,8 @@ import Inscription from "./Pages/Inscription";
 import Quiz from "./Pages/Quiz";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { AppBar, Typography } from "@mui/material";
+import Connexion from "./Pages/Connexion";
+import Protected from "./Components/Protected";
 
 function App() {
   return (
@@ -16,8 +18,11 @@ function App() {
           </Typography>
         </AppBar>
         <Routes>
+          <Route path="/connexion" element={<Connexion />} />
           <Route path="/inscription" element={<Inscription />} />
-          <Route path="/quiz" element={<Quiz />} />
+          <Route element={<Protected />}>
+            <Route path="/quiz" element={<Quiz />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
