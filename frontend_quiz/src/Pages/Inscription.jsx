@@ -1,4 +1,4 @@
-import { Box, Button, Grid, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { useRef } from "react";
 
 function Inscription() {
@@ -29,16 +29,54 @@ function Inscription() {
     });
   };
   return (
-    <Grid container ref={formRef} spacing={2} component="form">
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "10px",
+        width: "100%",
+        marginTop: "100px",
+      }}
+      container
+      ref={formRef}
+      spacing={2}
+      component="form"
+    >
       <h1>Formulaire d'inscription</h1>
-      <TextField type="text" name="firstname" label="First Name" />
-      <TextField type="text" name="lastname" label="Last Name" />
-      <TextField type="email" name="email" label="Email" />
-      <TextField type="password" name="password" label="Password" />
-      <Button variant="contained" onClick={() => handleClick()}>
+      <TextField
+        sx={{ width: "60%" }}
+        type="text"
+        name="firstname"
+        label="First Name"
+      />
+      <TextField
+        type="text"
+        sx={{ width: "60%" }}
+        name="lastname"
+        label="Last Name"
+      />
+      <TextField
+        type="email"
+        sx={{ width: "60%" }}
+        name="email"
+        label="Email"
+      />
+      <TextField
+        type="password"
+        sx={{ width: "60%" }}
+        name="password"
+        label="Password"
+      />
+      <Button
+        variant="contained"
+        color="success"
+        sx={{ width: "60%" }}
+        onClick={() => handleClick()}
+      >
         Inscription
       </Button>
-    </Grid>
+    </Box>
   );
 }
 

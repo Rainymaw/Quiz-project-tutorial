@@ -84,7 +84,24 @@ const getAllQuestions = async (req, res) => {
   res.json({ questions: questions });
 };
 
+const getCategories = async (req, res) => {
+  //Avec mongoDB on peut faire les opérations suivantes :
+  //Question.find() Récupère toutes les questions
+  //Question.findById() Récupére la question avec l'id spécifiée
+  //QUestion.findOne() Récupére une question qui correspond au parametre
+  const questions = await Question.find();
+  let liste_categories = [];
+  questions.forEach((question) => {
+    console.log(question.type);
+    if (liste_categories.includes(question.type) === false) {
+      liste_categories.push(question.type);
+    }
+  });
+  res.json({ categories: liste_categories, message: "Categories récupérées " });
+};
+
 module.exports = {
+  getCategories,
   addQuestion,
   getAddQuestionPage,
   getAllQuestionsPage,

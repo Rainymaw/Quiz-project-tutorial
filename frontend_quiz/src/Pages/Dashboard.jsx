@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, Typography } from "@mui/material";
+import Cookies from "js-cookie";
 
 function Dashboard() {
   const [statistiques, setStatistiques] = useState({});
@@ -7,9 +8,16 @@ function Dashboard() {
     getStats();
   }, []);
   const getStats = async () => {
-    const response = await fetch("http://localhost:5678/api/admin/stats");
+    const token = Cookies.get("token");
+    const response = await fetch("http://localhost:5678/api/admin/stats", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer : " + token,
+      },
+    });
     const data = await response.json();
-    setStatistiques(data.stats);
+    setStatistiques(data);
   };
   return (
     <div>
@@ -20,7 +28,7 @@ function Dashboard() {
         <Card>
           <CardContent>
             <Typography variant="h4">Total quizzes number</Typography>
-            <Typography variant="h2">{statistiques.totalQuiz}</Typography>
+            <Typography variant="h2">{statistiques.nbQuestions}</Typography>
           </CardContent>
         </Card>
         <Card>
@@ -28,13 +36,12 @@ function Dashboard() {
             <Typography variant="h4">Nombre d'utilisateurs</Typography>
             <Typography variant="h2">{statistiques.nbUsers}</Typography>
           </CardContent>
-        </Card>
-        <Card>
           <CardContent>
-            <Typography variant="h4">Nombre de connexions par jour</Typography>
-            <Typography variant="h2">{statistiques.nbConnexions} </Typography>
+            <Typography variant="h4">Nombre d'appels API</Typography>
+            <Typography variant="h2">{statistiques.nbConnections}</Typography>
           </CardContent>
         </Card>
+        <Card></Card>
       </div>
     </div>
   );

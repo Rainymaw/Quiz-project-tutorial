@@ -1,4 +1,4 @@
-import { Grid2, Box, TextField, Button } from "@mui/material";
+import { Box, TextField, Button } from "@mui/material";
 import { useRef } from "react";
 function Connexion() {
   let formRef = useRef();
@@ -21,12 +21,40 @@ function Connexion() {
     console.log(resData);
   };
   return (
-    <Grid2 component="form" ref={formRef}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "10px",
+        width: "100%",
+        marginTop: "100px",
+      }}
+      component="form"
+      ref={formRef}
+    >
       <h1>Formulaire d'inscription</h1>
-      <TextField name="email" label="email" type="email" />
-      <TextField name="password" label="password" type="password" />
-      <Button onClick={() => handleClick()}>Connecte-toi</Button>
-    </Grid2>
+      <TextField
+        sx={{ width: "60%" }}
+        name="email"
+        label="email"
+        type="email"
+      />
+      <TextField
+        sx={{ width: "60%" }}
+        name="password"
+        label="password"
+        type="password"
+      />
+      <Button
+        sx={{ width: "60%" }}
+        color="success"
+        variant="contained"
+        onClick={() => handleClick()}
+      >
+        Connecte-toi
+      </Button>
+    </Box>
   );
 }
 

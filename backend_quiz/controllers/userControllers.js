@@ -34,11 +34,15 @@ const connecterUtilisateur = async (req, res) => {
   }
   const token = genererToken({
     firstname: utilisateur.firstname,
-    password: utilisateur.password,
+    email: utilisateur.email,
+    isAdmin: utilisateur.isAdmin,
+    role: utilisateur.role,
   });
   res.cookie("token", token, { samSite: "none" });
-  
+
   res.json({ token: token });
 };
+
+
 
 module.exports = { creerUtilisateur, connecterUtilisateur };
